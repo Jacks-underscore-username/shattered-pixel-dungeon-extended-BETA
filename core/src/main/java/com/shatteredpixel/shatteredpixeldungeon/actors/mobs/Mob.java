@@ -690,7 +690,7 @@ public abstract class Mob extends Char {
 			} else {
 				Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG);
 			}
-			if (enemy.buff(Preparation.class) != null) {
+			if (enemy.buff(Preparation.class) != null || !(enemy instanceof Hero) || !Dungeon.isChallenged(Challenges.NIMBLE)) {
 				Wound.hit(this);
 			} else {
 				Surprise.hit(this);
@@ -735,9 +735,9 @@ public abstract class Mob extends Char {
 	}
 
 	public boolean surprisedBy( Char enemy, boolean attacking ){
-		return enemy == Dungeon.hero
-				&& (enemy.invisible > 0 || !enemySeen || (fieldOfView != null && fieldOfView.length == Dungeon.level.length() && !fieldOfView[enemy.pos]))
-				&& (!attacking || enemy.canSurpriseAttack());
+		return enemy == Dungeon.hero && (Dungeon.isChallenged(Challenges.NIMBLE) || 
+				((enemy.invisible > 0 || !enemySeen || (fieldOfView != null && fieldOfView.length == Dungeon.level.length() && !fieldOfView[enemy.pos]))
+				&& (!attacking || enemy.canSurpriseAttack())));
 	}
 
 	//whether the hero should interact with the mob (true) or attack it (false)

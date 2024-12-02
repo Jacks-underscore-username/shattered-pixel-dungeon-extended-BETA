@@ -24,6 +24,7 @@ package com.shatteredpixel.shatteredpixeldungeon.actors.hero;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Bones;
+import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
 import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
@@ -704,13 +705,18 @@ public class Hero extends Char {
 		}
 
 		speed = AscensionChallenge.modifyHeroSpeed(speed);
-		
+
+		if (Dungeon.isChallenged(Challenges.NIMBLE)) {
+			speed *= 1.25;
+		}
+
 		return speed;
 		
 	}
 
 	@Override
 	public boolean canSurpriseAttack(){
+		if (Dungeon.isChallenged(Challenges.NIMBLE)) return true;
 		KindOfWeapon w = belongings.attackingWeapon();
 		if (!(w instanceof Weapon))             return true;
 		if (RingOfForce.fightingUnarmed(this))  return true;
@@ -1484,6 +1490,10 @@ public class Hero extends Char {
 	
 	@Override
 	public void damage( int dmg, Object src ) {
+		if (Dungeon.isChallenged(Challenges.NIMBLE)) {
+			dmg *= 2;
+		}
+
 		if (buff(TimekeepersHourglass.timeStasis.class) != null
 				|| buff(TimeStasis.class) != null) {
 			return;

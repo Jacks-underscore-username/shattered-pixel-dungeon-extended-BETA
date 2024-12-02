@@ -27,18 +27,20 @@
  public class Challenges {
  
 	 //Some of these internal IDs are outdated and don't represent what these challenges do
-	 public static final int NO_FOOD				= 1;
-	 public static final int NO_ARMOR			= 2;
-	 public static final int NO_HEALING			= 4;
-	 public static final int NO_HERBALISM		= 8;
-	 public static final int SWARM_INTELLIGENCE	= 16;
-	 public static final int DARKNESS			= 32;
-	 public static final int NO_SCROLLS		    = 64;
-	 public static final int CHAMPION_ENEMIES	= 128;
-	 public static final int STRONGER_BOSSES 	= 256;
-	 public static final int OVERPOPULATION 		= 512;
- 
-	 public static final int MAX_VALUE           = 1023;
+	 public static final int NO_FOOD			= (int) Math.pow(2,0);
+	 public static final int NO_ARMOR			= (int) Math.pow(2,1);
+	 public static final int NO_HEALING			= (int) Math.pow(2,2);
+	 public static final int NO_HERBALISM		= (int) Math.pow(2,3);
+	 public static final int SWARM_INTELLIGENCE	= (int) Math.pow(2,4);
+	 public static final int DARKNESS			= (int) Math.pow(2,5);
+	 public static final int NO_SCROLLS		    = (int) Math.pow(2,6);
+	 public static final int CHAMPION_ENEMIES	= (int) Math.pow(2,7);
+	 public static final int STRONGER_BOSSES 	= (int) Math.pow(2,8);
+	 public static final int OVERPOPULATION     = (int) Math.pow(2,9);
+	 public static final int EVOLUTION 			= (int) Math.pow(2,10);
+	 public static final int NIMBLE				= (int) Math.pow(2,11);
+
+	 public static final int MAX_VALUE          = (int) Math.pow(2,12)-1;
  
 	 public static final String[] NAME_IDS = {
 			 "champion_enemies",
@@ -50,11 +52,13 @@
 			 "swarm_intelligence",
 			 "darkness",
 			 "no_scrolls",
-			 "overpopulation"
+			 "overpopulation",
+			 "evolution",
+			 "nimble"
 	 };
  
 	 public static final int[] MASKS = {
-			 CHAMPION_ENEMIES, STRONGER_BOSSES, NO_FOOD, NO_ARMOR, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, NO_SCROLLS, OVERPOPULATION
+			 CHAMPION_ENEMIES, STRONGER_BOSSES, NO_FOOD, NO_ARMOR, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, NO_SCROLLS, OVERPOPULATION, EVOLUTION, NIMBLE
 	 };
  
 	 public static int activeChallenges(){
